@@ -1,0 +1,62 @@
+<html>
+
+<head>
+    <title>myporfol</title>
+    <meta charset = "utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1, user-scalable=0">
+    <style type="text/css">
+        * {
+            text-decoration: none;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: table;
+            margin: 0 auto;
+        }
+
+        .image {
+            height: 100%;
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .main {
+            height: 250px;
+            width: 200px;
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+       <div class="container">
+           <div class ="main">
+           </div>
+           <img src="myporfol_img/cover.png" width="300px" height="">
+       </div>
+</body></html>
+<script src = "JS/jquery-1.12.0.min.js"></script>
+<script src = "JS/core.js"></script>
+<script>
+	$(document).ready(function(){
+		Page.getUsrobj(start);
+	});
+	
+	function start(usrobj){
+		setTimeout(function(){
+			$("boby").fadeOut();
+			
+			setTimeout(function(){
+				var url = (usrobj == null)? "myporfol_LogIn.html" : "myporfol_Main.html";
+				window.location.href = url;
+			}, 800);
+		}, 2000);
+	}
+	
+</script>
+

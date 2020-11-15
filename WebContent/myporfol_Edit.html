@@ -1,0 +1,80 @@
+<html>
+<head>
+	<title>myporfol</title>
+	<meta name=viewport content="width=device-width, initial-scale=1, user-scalable=0">
+	<meta charset="UTF-8">
+	<style type="text/css">
+		@import url('https://fonts.googleapis.com/css2?family=Bentham&family=Nanum+Myeongjo:wght@800&family=Open+Sans&display=swap');
+		@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700&display=swap');
+		@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Serif+KR:wght@700&display=swap');
+	</style>
+	<link rel="stylesheet" href="CSS/Edit.css">
+</head>
+<body>
+	<div id="name">
+	Upload your photo</div>
+	<div class="rectangle">
+		<div id = "inside">
+			<input id = "--photo-input" type = "file" style="display:none">		
+		</div>
+	</div>
+	<input type="button" value="upload" class="button" onClick="ImageUploader.add()">
+	<div id="name">Date From</div>
+	<div id="date">
+        <input type='date' id="Start" value='2000-01-01'/> ~ 
+        <input type='date' id="End" value='2020-06-30'/>
+</div>
+ 	<div id="name">Title</div>
+ 	<textarea id="title" placeholder = "제목을 입력해 주세요"></textarea>
+	<div id="name">Input your activity</div>    
+    <textarea id="bbs-work" cols="49" rows="10" placeholder = "활동 내용을 입력해 주세요"></textarea>
+    <input type="button" value="upload" class="button" onClick="done()">
+</body>
+</html>
+<script src="JS/jquery-1.12.0.min.js"></script>
+<script src="JS/core.js"></script>
+<script src="JS/image.js"></script>
+<script type="text/javascript">
+	var pagectx = {};
+	$(document).ready(function() {
+		Page.init(start);
+	});
+	
+	function start(usrobj){
+		ImageUploader.init(".inside");
+		pagectx.usrobj = usrobj;
+	}
+	
+	function done() {
+		var title = $("#title").val();
+		if (title == "") {
+			alert("제목을 작성해주세요");
+			$("#title").focus();
+			return; 
+		}
+		
+		var desc = $("#bbs-work").val();
+		if (desc == "" || desc.length < 10) {
+			alert("내용을 10글자 이상 작성해 주세요.");
+			$("#desc").focus();
+			return; 
+		}
+		var Start = $("#Start").val();
+		var End = $("#End").val();
+		var feed ={
+				author: pagectx.usrobj,
+				title: title,
+				desc: desc,
+				start: Start,
+				end: End
+		};
+		var params = new FormData();
+		params.append("id", pagectx.usrobj.id);
+		params.append("feed", JSON.stringify(feed));
+		parmas = ImageUploader.appendParams(params, "images");
+		AJAX.formCall("JSP/feedAdd.jsp", params, function(data){
+			alert("작성한 글을 업로드 했습니다")
+			window.location.href = "myporfol_Main.html";
+		});
+	}
+</script>

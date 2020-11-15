@@ -1,0 +1,67 @@
+<html>
+<head>
+    <title>Signup</title>
+    <meta name=viewport content="width=device-width, initial-scale=1, user-scalable=0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="CSS/Log_In.css">
+</head>
+
+<body>
+    <div class="box">
+        <h1><img src="myporfol_img/cover.png" width="250px" height="auto"></h1>
+        <h1>signup</h1>
+        <input type="text" id="id" placeholder="E-Mail">
+        <input type="password" id="ps" placeholder="Password">
+        <input type="password" id="pw_cf" placeholder="Confirm Your Password">
+        <input type="text" id="Nick_Name" placeholder="NickName">
+        <input type="submit" value="회원가입" onClick ="SignUp()">
+       
+        <a href="myporfol_LogIn.html">이미 계정이 있습니다.</a>
+    </div>
+</body></html>
+<script src ="JS/jquery-1.12.0.min.js"></script>
+<script src ="JS/core.js"></script>
+<script>
+	function SignUp(){
+		var id = $("#id").val();
+		if(id == ""){
+			alert("아이디를 입력해 주세요");
+			$("#id").focus();
+			return;
+		}
+		var ps = $("#ps").val();
+		if(ps == ""){
+			alert("패스워드를 입력해 주세요");
+			$("#ps").focus();
+			return;
+		}
+		var ps2 = $("#pw_cf").val();
+		if(ps2 != ps){
+			alert("패스워드가 일치하지 않습니다.");
+			$("#ps").focus();
+			return;
+		}
+		var Nick_Name = $("#Nick_Name").val();
+		if(Nick_Name == ""){
+			alert("닉네임을 입력해 주세요.");
+			$("#Nick_Name").focus();
+			return;
+		}
+		
+		var url = "JSP/signup.jsp?id=" + id + "&ps=" + ps + "&Nick_Name=" + Nick_Name;
+		AJAX.call(url,null,function(data){
+			var code = data;
+			if(code == "EX"){
+				alert("이미 가입된 회원입니다.");
+			}
+			else if(code == "ER"){
+				alert("에러");
+			}
+			else{
+				alert("회원가입 완료");
+				window.location.href = "myporfol_LogIn.html"
+			}
+			
+		});
+	}
+</script>

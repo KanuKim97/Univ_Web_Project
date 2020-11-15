@@ -1,0 +1,367 @@
+<html>
+<head>
+    <title>myporfol</title>
+    <meta name=viewport content="width=device-width, initial-scale=1, user-scalable=0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible">
+    <style type="text/css">
+        @import url('https://fonts.googleapis.com/css2?family=Bentham&family=Nanum+Myeongjo:wght@800&family=Open+Sans&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Noto+Serif+KR:wght@700&display=swap');
+    	* {
+            text-decoration: none;
+        }
+
+        .list {
+            background-color: rgb(249, 249, 249);
+            width: 1.6em;
+            height: 1.6em;
+            float: right;
+            margin: 0.8em 0.8em 0.1em 0.5em;
+            position: relative;
+            background-repeat: no-repeat;
+            background-size: 1.6em;
+        }
+
+        .image {
+        	display : flex;
+            width: 400px;
+            height: 100px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-image: url('myporfol_img/main.svg');
+        }
+
+        .text {
+            margin: 0.6em 1.8em 0em 1.6em;
+            font-size: 30px;
+            font-family: 'Nanum Myeongjo', serif;
+        }
+ 		.userEdit_section {
+ 		   	display : block;
+			position: relative;
+			float: left;
+			width: 100%;
+			padding: 16px 16px;
+		}
+        .userEdit_section .btn-del {
+     
+			position : absolute;
+			right: 76px; top: 50%;
+			transform: translateY(-50%);
+			width: 20px; height: 20px;
+			overflow: hidden;
+			background-position: 50%;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-image: url("myporfol_img/ico_delete2.png");
+		}
+		
+		.btn-del.pencil {
+			right: 100px;
+			width: 16px; height: 16px;
+			background-image: url("myporfol_img/ico_pencil.png");
+		}
+        
+        .Photo_section {
+            display: table;
+            width: 18em;
+            height: 10em;
+            border-radius: 5px;
+            background-color: rgb(227, 244, 253);
+            text-align: center;
+            margin: auto;
+        }
+
+        .inside {
+        	display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+			overflow: hidden;
+			background-position: 50%;
+			background-repeat: no-repeat;
+			background-size: cover;
+	 	}
+		
+        #title {
+            text-align: left;
+            font-size: 20px;
+            margin-left: 2.1em;
+            margin-top: 1.5em;
+            width: 260px;
+            background-color: rgb(65, 96, 243);
+            font-family: 'Noto Serif KR', serif;
+        }
+
+        #start_date {
+            vertical-align: middle;
+            text-align: left;
+            margin-left: 3em;
+            margin-top: 0.5em;
+            font-family: 'Noto Serif KR', serif;
+        }
+        
+        #End_date {
+            vertical-align: middle;
+            text-align: left;
+            margin-left: 3em;
+            margin-top: 0.5em;
+            font-family: 'Noto Serif KR', serif;
+        }
+
+        #memo {
+            vertical-align: middle;
+            text-align: left;
+            margin-left: 0.8em;
+            margin-top: 0.5em;
+        }
+
+        .Text-section {
+            width: 17.5em;
+            height: 10em;
+            background-color: white;
+            margin: auto;
+        }
+
+        #line {
+            border-left: 6px solid rgb(230, 230, 230);
+            height: 180px;
+        }
+
+        #calender2 {
+            vertical-align: middle;
+            text-align: left;
+            margin-left: 0.5em;
+            margin-top: 0.5em;
+            font-family: 'Noto Serif KR', serif;
+        }
+
+        #line2 {
+            border-left: 6px solid rgb(230, 230, 230);
+            height: 150px;
+        }
+
+        body {
+            margin: 0px;
+            background-color: white;
+            font-family: sans-serif;
+			overflow-x: hidden;
+        }
+        .author{
+		    float: left;
+		    width: 100%;
+		    padding-top: 0px;
+		    background-color: white;
+		    border-top: 1px solid #f4f4f4;
+		}
+		.nav{
+			height: 100%;
+			width: 0;
+			position: fixed;
+			z-index: 1;
+			top: 0;
+			left: 0;
+			background-color: black;
+			opacity: .9;
+			overflow-x: hidden;
+			padding-top: 60px;
+			transition: 0.7s;
+		}
+		
+		.nav a{
+			display: block;
+			padding: 20px 30px;
+			font-size: 25px;
+			text-decoration: none;
+			color: #ccc;
+		}
+		.nav a:hover{
+			color: #fff;
+			transition: 0.4s;
+		}
+		.nav .close{
+			position: absolute;
+			top: 0;
+			right: 22px;
+			margin-left: 50px;
+			font-size: 30px;
+		}
+		.slide a{
+			color: #000;
+			font-size: 36px;
+		}
+		#content{
+			padding: 10px;
+			transition: margin-left 0.7s;
+		}
+    </style>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js">
+	</script>
+	<script type="text/javascript">
+		function openSlide() {
+			document.getElementById('menu').style.width = '200px';
+			document.getElementById('content').style.width = '200px';
+
+		}
+
+		function closeSlide() {
+			document.getElementById('menu').style.width = '0px';
+			document.getElementById('content').style.width = '0px';
+
+		}
+	</script>
+</head>
+<body>
+    <div id="content">
+		<span class="slide">
+			<a href="#" onclick="openSlide()">
+				<i class="fas fa-bars"></i>
+			</a>
+		</span>
+
+		<div id="menu" class="nav">
+			<a href="#" onclick="closeSlide()">
+				<i class="fas fa-times"></i>
+			</a>
+			<a href="#" onClick = "Profile()">회원 정보 수정</a>
+			<a href="#" onClick = "Add()">커리어 목록 추가</a>
+			<a href="#" onClick = "Setting()">설정</a>
+			<a href="#" onClick = "getPDF()">PDF 출력</a>
+			<a href="#" onClick = "logOut()">로그아웃</a>
+		</div>
+		<div class="image"></div>
+	</div>
+
+    <hr width="80%" align="center" size="4" color="black" border radius="2">
+	    <div class="text">
+	        Hello, upload your career here.
+	    </div>
+    <br>
+   	<div id="contents-area" class="section">
+	</div>
+    <script src="JS/main.js"></script>
+</body>
+</html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script src="JS/jquery-1.12.0.min.js"></script>
+<script src="JS/core.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		Page.init(start);
+	});
+	
+	var pagectx = {};
+	function start(usrobj){
+		pagectx.usrobj = usrobj;
+		var params = "id=" +usrobj.id;
+		AJAX.call("JSP/feedFetch.jsp", params, function(data){
+			var feeds= JSON.parse(data.trim());
+			pagectx.feeds = feeds;
+			var list = feeds.concat(feedList);
+			generate(list);
+		});
+	}
+	
+	function generate(list){
+		var str = "";
+		for (var i=0; i<list.length; i++) {
+			str += getFeedStr(list[i]);
+		}
+		$("#contents-area").html(str);	
+	}
+
+	
+	function Profile(){
+		window.location.href = "myporfol_ProFile_ver.2.html"
+	}
+	
+	function Setting(){
+		window.location.href = "myporfol_Setting.html"
+	}
+	
+	function Add(){
+		window.location.href = "myporfol_Edit.html"
+	}
+	
+	function logOut(){
+		var res = confirm("로그아웃 하시겠습니까?");
+		if(res == true){
+			AJAX.call("JSP/LogOut.jsp",null,function(data){
+				window.location.href = "myporfol_LogIn.html"
+			});
+		}
+	}
+	
+	function updateFeed(feedNo){
+		var feed = null;
+		for(var i =0; i <pagectx.feeds.length; i++){
+			if(pagectx.feeds[i].no = feedNo){
+				selfeed = pagectx.feeds[i];
+				break;
+			}
+		}
+		if(selfeed == null){
+			alert("선택된 피드가 없습니다.");
+			return;
+		}
+		Page.go("myporfol_Update.html", selfeed);
+	}
+	
+	function deleteFeed(feedNo){
+		var res = confirm("삭제하시겠습니까?");
+		if(res==true){
+			var params = "no=" + feedNo;
+			AJAX.call("JSP/feedDelete.jsp", params, function(data){
+				window.location.replace("myporfol_Main.html");
+			});
+		}
+	}
+	
+	function getFeedStr(feed){
+		var str = "";
+		str += "<div class = 'author'>";
+		str += "<div class = 'userEdit_section'>";
+		if(pagectx.usrobj.id == feed.author.id){
+			str += "<div class='btn-del' onclick='deleteFeed(" + feed.no + ")'></div>";	
+			str += "<div class='btn-del pencil' onclick='updateFeed(" + feed.no + ")'></div>";	
+		}
+		str += "</div>";
+		if(feed.images != ""){
+			str += "<div class = 'Photo_section'>";
+			str += "<div class='inside' style='background-image: url(\"" + getImageUrl(feed.images) + "\")'>"
+			str += "</div>";
+			str += "</div>";
+		}
+		str += "<div id='title'>" + "  " + feed.title + " " + "</div>";
+		str += "<div id='start_date'>" + "Start : " + feed.start + "</div>"; 
+		str += "<div id='End_date'>" + "End : " + feed.end + "</div>";
+		str += "<div class='Text-section'>";
+		str += "<div id='line'>";
+		str += "<div id='memo'>" + feed.desc;
+		str += "</div>";
+		str += "</div>";
+		str += "<br>";
+		str += "</div>";
+		str += "</div>";
+		return str;
+	}
+	
+	function getImageUrl(filename){
+		return "users/" + pagectx.usrobj.id + "/" + filename;
+	}
+	
+	function showFeed(index) {
+			window.location.href = "feed-" + index + ".html";
+	}
+	
+	function getPDF(){
+		var doc = new jsPDF()
+		var h1 = document.querySelector('#title')
+		
+		doc.fromHTML(h1,15,15)
+		
+		doc.save("a.pdf")
+	}
+	var feedList = [];
+</script>

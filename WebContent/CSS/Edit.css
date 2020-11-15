@@ -1,0 +1,51 @@
+		*{
+			text-decoration: none;
+		}
+		#name{
+			text-align: left;
+			font-size: 15px;
+			margin: 1em 1.8em 1em 0.4em;
+			width: 260px;
+			font-family: 'Noto Serif KR', serif;
+		}
+		.rectangle{
+			display: table;
+			width: 23em;
+			height: 12em;
+			border-radius: 9px;
+			background-color: rgb(247,247,247);
+			text-align: center;
+			margin:auto;
+		}
+		#inside{
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+		}
+		#date{
+			margin: 1em 1.8em 1em 0.4em;
+		}
+		#bbs-work{
+			vertical-align: middle;
+			margin: 0em 0em 0em 0.2em;
+		}
+		.button {
+		    width:97%;
+		    height: 45px;
+		    margin: 10px 5px 10px 5px;
+		    background-color: orange;
+		    border: none;
+		    color:white;
+		    padding: 10px;
+		    text-align: center;
+		    display: inline-block;
+		    font-size: 20px;
+			border-radius: 14px;
+		    cursor: pointer;
+			font-family: Consolas, sans-serif;
+		}
+		body{
+			margin: 0px;
+			background-color: white;
+		
+		}

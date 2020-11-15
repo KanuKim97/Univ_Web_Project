@@ -1,0 +1,66 @@
+<html>
+<head>
+	<title>myporfol</title>
+	<meta name=viewport content="width=device-width, initial-scale=1, user-scalable=0">
+	 <link rel="stylesheet" href="CSS/Log_In.css">
+</head>
+<body>
+	<div class="box">
+	<h1><img src="myporfol_img/cover.png" width="250px" height="auto"></h1>
+	<h1>Setting your option </h1>
+	<div class="list">
+			커리어 내용 전부 삭제하기 <input type="submit" value="삭제" onClick="del_feed_all()">
+		<br><br>
+			계정탈퇴하기  <input type="submit" value="탈퇴" onClick="del_account()">
+	</div>
+	</div>
+</body>
+</html>
+<script src ="JS/jquery-1.12.0.min.js"></script>
+<script src ="JS/core.js"></script>
+<script>
+	var pagectx = {};
+	$(document).ready(function() {
+		Page.init(start);
+	});
+	
+	function start(usrobj){
+		pagectx.usrobj = usrobj;
+	}
+
+	function del_account(){
+		var url = "JSP/del_account.jsp?id=" + pagectx.usrobj.id;
+		console.log(url);
+		AJAX.call(url,null,function(data){
+			var code = data;
+			if(code = "OK"){
+				alert("삭제가 완료되었습니다.");
+				AJAX.call("JSP/LogOut.jsp",null,function(data){
+					window.location.href = "myporfol_LogIn.html"
+				});
+			}
+			else{
+				alert("삭제할 수 없습니다. 재 로그인 하십시오");
+				AJAX.call("JSP/LogOut.jsp",null,function(data){
+					window.location.href = "myporfol_LogIn.html"
+				});
+			}
+		});
+	}
+
+	function del_feed_all(){
+		var url = "JSP/del_feed_all.jsp?id=" + pagectx.usrobj.id;
+		console.log(url);
+		AJAX.call(url,null,function(data){
+			var code = data;
+			if(code = "OK"){
+				alert("삭제가 완료되었습니다.");
+				window.location.href = "myporfol_Main.html"
+			}
+			else{
+				alert("게시하신 게시글이 없습니다.");
+				window.location.href = "myporfol_Main.html"
+			}
+		});
+	}
+</script>

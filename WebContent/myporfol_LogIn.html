@@ -1,0 +1,62 @@
+<html>
+
+<head>
+    <title>LogIn</title>
+    <meta charset = "utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1, user-scalable=0">
+    <link rel="stylesheet" href="CSS/Log_In.css">
+</head>
+
+<body>
+    <div class="box">
+        <h1><img src="myporfol_img/cover.png" width="250px" height="auto"></h1>
+        <h1>LOGIN</h1>
+        <input id="id" type="text" placeholder="이메일">
+        <input id="ps" type="password" placeholder="비밀번호">
+        <input type="submit" value="로그인" onClick="Login()" >
+        <br><br>
+
+        <a href="myporfol_SignUp.html">회원가입</a>
+        <br>
+        <br>
+        <a href="myporfol_FindPW.html">비밀번호 찾기</a>
+
+    </div>
+</body></html>
+
+<script src ="JS/jquery-1.12.0.min.js"></script>
+<script src ="JS/core.js"></script>
+<script>
+	function Login(){
+		var id = $("#id").val();
+		if(id == ""){
+			alert("아이디를 입력해 주세요");
+			$("#id").focus();
+			return;
+			}
+		var ps = $("#ps").val();
+		if(ps == ""){
+			alert("패스워드를 입력해 주세요");
+			$("#ps").focus();
+			return;
+			}
+		var url = "JSP/log_in.jsp?id=" + id + "&ps=" + ps;
+		AJAX.call(url,null,function(data){
+			var code = data.trim();
+			if(code == "NA"){
+				alert("회원 정보를 찾을수 없습니다");
+			}
+			else if(code == "PS"){
+				alert("패스워드가 일치 하지 않습니다");
+			}
+			else if(code == "EX"){
+				alert("이미 로그인 하셨습니다");
+				window.location.href = "myporfol_Main.html"
+			}
+			else{
+				alert("로그인 완료");
+				window.location.href = "myporfol_Main.html"
+			}
+		});
+	}
+</script>

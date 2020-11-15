@@ -1,0 +1,38 @@
+*{
+		text-decoration: none;
+	}
+	#name{
+		text-align: center;
+		margin: 1em;
+		font-size: 15px;
+	}
+	.no-border{
+		border:0px; 
+	}
+	img{
+	 margin: 2em 0em 2em 1em;
+		display: block;
+	}
+	.email{
+		text-align: left;
+		border:none;
+		margin: 1em 0em 0em 1em;
+	}
+	.button {
+	    width:80px;
+	    height: 45px;
+	    margin: 5px 0px 0px 180px;
+	    background-color: white;
+	    border: solid black 0.1px;
+	    color:black;
+	    text-align: center;
+	    font-size: 15px;
+		border-radius: 14px;
+	    cursor: pointer;
+		font-family: 'Noto Serif KR', serif;
+	}
+	body{
+		margin: 0px;
+		background-color: white;
+		font-family: 'Noto Serif KR', serif;
+	}

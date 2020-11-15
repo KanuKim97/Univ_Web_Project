@@ -1,0 +1,86 @@
+<html>
+
+<head>
+    <title>Edit</title>
+    <meta charset = "utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1, user-scalable=0">
+    <link rel="stylesheet" href="CSS/Log_In.css">
+</head>
+
+<body>
+    <div class="box">
+        <h1><img src="myporfol_img/cover.png" width="250px" height="auto"></h1>
+        <h1>EDIT!</h1>
+        <input id="Univ" type="text" placeholder="학교명">
+        <input id="Grade" type="text" placeholder="학년">
+        <input id="name" type="text" placeholder="이름">
+        <input type="submit" value="Edit" onClick="Edit()">
+        <br><br>
+		<a href="myporfol_Main.html">메인화면으로 돌아가기</a>
+    </div>
+</body></html>
+<script src="JS/jquery-1.12.0.min.js"></script>
+<script src="JS/core.js"></script>
+<script type="text/javascript">
+	var pagectx = {};
+	$(document).ready(function() {
+		Page.init(start);
+	});
+	
+	function start(usrobj){
+		pagectx.usrobj = usrobj;
+		BoxFetch();
+	}
+	
+	function BoxFetch(){
+		var url = "JSP/ProFileFetch.jsp?id=" + pagectx.usrobj.id;
+		AJAX.call(url,null,function(data){
+			var code = data;
+			var st_code = JSON.parse(code);
+			var str1 = document.getElementById('Univ');
+			var str2 = document.getElementById('Grade');
+			var str3 = document.getElementById('name');
+			str1.value = st_code.university;
+			str2.value = st_code.grade;
+			str3.value = st_code.name;
+		});
+	}
+	
+	function Edit(){
+		var Univ = $("#Univ").val();
+		if(Univ == ""){
+			alert("변경할 학교명을 입력해 주세요");
+			$("#Univ").focus();
+			return;
+		}
+		
+		var Grade = $("#Grade").val();
+		if(Grade == ""){
+			alert("변경할 학년을 입력해 주세요");
+			$("#Grade").focus();
+			return;
+		}
+		
+		var name = $("#name").val();
+		if(name == ""){
+			alert("변경할 아룸을 입력해 주세요");
+			$("#name").focus();
+			return;
+		}
+	
+		var url = "JSP/ProFileUpdate.jsp?id=" + pagectx.usrobj.id + "&Univ=" + Univ + "&Grade=" + Grade + "&name=" + name;
+		console.log(url);
+		AJAX.call(url,null,function(data){
+			var code = data;
+			if(code = "OK"){
+				alert("수정이 완료되었습니다.");
+				window.location.href = "myporfol_Main.html";
+			}
+			else{
+				alert("정보를 수정할 수 없습니다. 재 로그인 하십시오");
+				window.location.href = "myporfol_Main.html";
+			}
+		});
+	}
+
+</script>

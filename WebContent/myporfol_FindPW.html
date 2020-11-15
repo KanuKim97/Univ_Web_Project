@@ -1,0 +1,46 @@
+<html>
+
+<head>
+    <title>Find your password</title>
+    <meta charset = "utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1, user-scalable=0">
+    <link rel="stylesheet" href="CSS/Log_In.css">
+</head>
+
+<body>
+    <div class="box">
+        <h1><img src="myporfol_img/cover.png" width="250px" height="auto"></h1>
+        <h1>Find your password</h1>
+        <input type="text" id="id" placeholder="E-Mail">
+        <input type="text" id="Nick_Name" placeholder="NickName">
+        <input type="submit" value="비밀번호 찾기" onClick = "FindPW()">
+       
+        <a href="myporfol_LogIn.html">로그인 화면으로</a>
+    </div>
+</body></html>
+<script src ="JS/jquery-1.12.0.min.js"></script>
+<script src ="JS/core.js"></script>
+<script>
+	function FindPW(){
+			var id = $("#id").val();
+			if(id == ""){
+				alert("아이디를 입력해 주세요");
+				$("#id").focus();
+				return;
+			}
+			var Nick_Name = $("#Nick_Name").val();
+			if(Nick_Name == ""){
+				alert("닉네임을 입력해 주세요.");
+				$("#Nick_Name").focus();
+				return;
+			}
+			console.log(Nick_Name);
+			console.log(id);
+			var url = "JSP/FindPW.jsp?id=" + id + "&Nick_Name=" + Nick_Name;
+			AJAX.call(url,null,function(data){
+				var code = data;
+					alert(code);
+					window.location.href = "myporfol_LogIn.html"
+			});
+		}
+</script>
