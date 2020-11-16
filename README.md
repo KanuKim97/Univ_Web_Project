@@ -9,6 +9,7 @@
 >사용 언어: JAVA, JSP  
 >환경: Eclipse Mars 
 >DB: MySQL
+>Server: Tomcat v8.0
 
 # 기타 주요 보완사항
 ------------------------
